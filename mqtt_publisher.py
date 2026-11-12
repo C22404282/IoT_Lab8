@@ -42,7 +42,7 @@ pw = "12345678"
 
 
 #MQTT
-HOSTNAME = '10.172.35.13'
+HOSTNAME = '10.41.246.13'
 PORT = 30000
 TOPIC = 'temp/pico'
 

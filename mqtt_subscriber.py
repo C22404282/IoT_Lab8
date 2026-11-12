@@ -27,18 +27,22 @@ def connect(
     return False
 
 
-HOSTNAME = '10.172.35.13'
+HOSTNAME = '10.41.246.13'
 PORT = 30000
 TOPIC = 'temp/pico'
 
 def callback(topic,msg):
     print(f"Recieved: {msg} for topic {topic}")
     if topic == b'temp/pico':
-        msg = int.from_bytes(msg)
-        if msg >= 22:
+        print("topic is temp/pico")
+        temp = int(float(msg.decode('utf-8')))
+        print("Temp is",temp)
+        if temp >= 30:
             led.on()
+            print("LED ON")
         else:
             led.off()
+            print("LED OFF")
     
     
 led = Pin('LED',Pin.OUT)
@@ -54,7 +58,7 @@ else:
         port = PORT,
         keepalive = 7000 #secs
     )
-
+    
     mqtt.connect()
     mqtt.set_callback(callback)
     mqtt.subscribe(TOPIC.encode()) 
