@@ -37,7 +37,7 @@ def callback(topic,msg):
         print("topic is temp/pico")
         temp = int(float(msg.decode('utf-8')))
         print("Temp is",temp)
-        if temp >= 30:
+        if temp > 25:
             led.on()
             print("LED ON")
         else:
